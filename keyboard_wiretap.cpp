@@ -28,3 +28,7 @@ void KeyboardWiretap::set_keyboard_press_callback(void (*keyboard_press_callback
 {
   keyboard_press_callback_ptr_ = keyboard_press_callback_ptr;
 }
+
+void KeyboardWiretap::timer_callback()
+{
+}

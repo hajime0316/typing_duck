@@ -19,6 +19,7 @@ class KeyboardWiretap {
   void begin();
   void begin(void (*keyboard_press_callback_ptr)());
   void set_keyboard_press_callback(void (*keyboard_press_callback_ptr)());
+  void timer_callback();
 };
 
 #endif // KEYBOARD_WIRETAP_H_
