@@ -5,8 +5,15 @@ static const int TIMER_PERIOD = 10;
 
 KeyboardWiretap keyboard_wiretap;
 
-static void global_timer_callback();
-void default_keyboard_press_callback();
+static void global_timer_callback()
+{
+  keyboard_wiretap.timer_callback();
+}
+
+static void default_keyboard_press_callback()
+{
+  // デフォルトでは何もしない．
+}
 
 void KeyboardWiretap::OnKeyDown(uint8_t mod, uint8_t key)
 {
@@ -50,14 +57,4 @@ void KeyboardWiretap::set_keyboard_press_callback(void (*keyboard_press_callback
 void KeyboardWiretap::timer_callback()
 {
   usb_.Task();
-}
-
-void global_timer_callback()
-{
-  keyboard_wiretap.timer_callback();
-}
-
-void default_keyboard_press_callback()
-{
-  // デフォルトでは何もしない．
 }

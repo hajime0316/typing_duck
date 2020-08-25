@@ -8,7 +8,15 @@ BackgroundProcess background_process;
 
 static const int TIMER_PERIOD = 50;
 
-static void global_timer_callback();
+static void global_timer_callback()
+{
+  background_process.timer_callback();
+}
+
+static void global_keyboard_press_callback()
+{
+  background_process.keyboard_press_callback();
+}
 
 BackgroundProcess::BackgroundProcess()
 {
@@ -32,14 +40,4 @@ void BackgroundProcess::timer_callback()
 void BackgroundProcess::keyboard_press_callback()
 {
   Serial.println("Keyboard pressed!");
-}
-
-void global_timer_callback()
-{
-  background_process.timer_callback();
-}
-
-void global_keyboard_press_callback()
-{
-  background_process.keyboard_press_callback();
 }
