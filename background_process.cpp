@@ -27,3 +27,7 @@ void keyboard_press_callback()
 {
   Serial.println("Keyboard pressed!");
 }
+
+// ここでBackgroundProcessクラスをインスタンス化する
+// background_process.hをインクルードしたら，このインスタンスが使える
+BackgroundProcess background_process;

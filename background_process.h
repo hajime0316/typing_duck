@@ -15,4 +15,8 @@ class BackgroundProcess {
   void begin();
 };
 
+// cppファイル内でBackgroundProcessクラスをインスタンス化する
+// background_process.hをインクルードしたら，このインスタンスが使える
+extern BackgroundProcess background_process;
+
 #endif // BACKGROUND_PROCESS_HPP_
