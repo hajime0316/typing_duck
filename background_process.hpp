@@ -4,9 +4,18 @@
 #include <hidboot.h>     // USBおよびHIDBootを使うためにインクルード
 #include <BleKeyboard.h> // BleKeyboardを使うためにインクルード
 
-USB Usb;
-HIDBoot<USB_HID_PROTOCOL_KEYBOARD> HidKeyboard(&Usb);
+class BackgroundProcess {
+ private:
+  USB usb;
+  HIDBoot<USB_HID_PROTOCOL_KEYBOARD> hid_keyboard;
+  BleKeyboard ble_keyboard;
 
-BleKeyboard bleKeyboard;
+ public:
+  BackgroundProcess();
+  ~BackgroundProcess();
+  void begin();
+  void timer_callback();
+  void keyboard_press_callback();
+};
 
 #endif // BACKGROUND_PROCESS_HPP_
