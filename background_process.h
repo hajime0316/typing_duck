@@ -1,5 +1,5 @@
-#ifndef BACKGROUND_PROCESS_HPP_
-#define BACKGROUND_PROCESS_HPP_
+#ifndef BACKGROUND_PROCESS_H_
+#define BACKGROUND_PROCESS_H_
 
 #include <Ticker.h>
 
@@ -19,4 +19,4 @@ class BackgroundProcess {
 // background_process.hをインクルードしたら，このインスタンスが使える
 extern BackgroundProcess background_process;
 
-#endif // BACKGROUND_PROCESS_HPP_
+#endif // BACKGROUND_PROCESS_H_
