@@ -2,7 +2,7 @@
 #include "background_process.h"
 #include "keyboard_wiretap.h"
 
-static const int TIMER_PERIOD = 100;
+static const int TIMER_PERIOD = 50;
 
 static void timer_callback();
 
