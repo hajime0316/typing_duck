@@ -19,8 +19,10 @@ void BackgroundProcess::begin()
 
 void timer_callback()
 {
+  Serial.println("Timer Fire!");
 }
 
 void keyboard_press_callback()
 {
+  Serial.println("Keyboard pressed!");
 }
