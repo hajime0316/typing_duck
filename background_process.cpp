@@ -1,7 +1,6 @@
 #include "background_process.h"
 
 void timer_callback();
-void keyboard_press_callback();
 
 BackgroundProcess::BackgroundProcess()
 {
