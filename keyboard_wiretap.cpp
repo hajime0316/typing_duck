@@ -5,7 +5,7 @@ static const int TIMER_PERIOD = 10;
 
 KeyboardWiretap keyboard_wiretap;
 
-static void timer_callback();
+static void global_timer_callback();
 void default_keyboard_press_callback();
 
 void KeyboardWiretap::OnKeyDown(uint8_t mod, uint8_t key)
@@ -33,7 +33,7 @@ void KeyboardWiretap::begin()
 
   hid_keyboard_.SetReportParser(0, this);
 
-  ticker_.attach_ms(TIMER_PERIOD, ::timer_callback);
+  ticker_.attach_ms(TIMER_PERIOD, global_timer_callback);
 }
 
 void KeyboardWiretap::begin(void (*keyboard_press_callback_ptr)())
@@ -52,7 +52,7 @@ void KeyboardWiretap::timer_callback()
   usb_.Task();
 }
 
-void timer_callback()
+void global_timer_callback()
 {
   keyboard_wiretap.timer_callback();
 }

@@ -4,7 +4,7 @@
 
 static const int TIMER_PERIOD = 50;
 
-static void timer_callback();
+static void global_timer_callback();
 
 BackgroundProcess::BackgroundProcess()
 {
@@ -16,16 +16,16 @@ BackgroundProcess::~BackgroundProcess()
 
 void BackgroundProcess::begin()
 {
-  keyboard_wiretap.begin(keyboard_press_callback);
-  ticker_.attach_ms(TIMER_PERIOD, timer_callback);
+  keyboard_wiretap.begin(global_keyboard_press_callback);
+  ticker_.attach_ms(TIMER_PERIOD, global_timer_callback);
 }
 
-void timer_callback()
+void global_timer_callback()
 {
   Serial.println("Timer Fire!");
 }
 
-void keyboard_press_callback()
+void global_keyboard_press_callback()
 {
   Serial.println("Keyboard pressed!");
 }
