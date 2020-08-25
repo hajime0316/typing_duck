@@ -45,6 +45,7 @@ void KeyboardWiretap::set_keyboard_press_callback(void (*keyboard_press_callback
 
 void KeyboardWiretap::timer_callback()
 {
+  usb_.Task();
 }
 
 void timer_callback()
