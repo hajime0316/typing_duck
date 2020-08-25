@@ -26,4 +26,6 @@ class KeyboardWiretap : KeyboardReportParser {
   void timer_callback();
 };
 
+extern KeyboardWiretap keyboard_wiretap;
+
 #endif // KEYBOARD_WIRETAP_H_
