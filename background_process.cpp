@@ -15,7 +15,7 @@ BackgroundProcess::~BackgroundProcess()
 
 void BackgroundProcess::begin()
 {
-  ticker.attach_ms(TIMER_PERIOD, timer_callback);
+  ticker_.attach_ms(TIMER_PERIOD, timer_callback);
 }
 
 void timer_callback()

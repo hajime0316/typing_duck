@@ -7,11 +7,11 @@
 
 class KeyboardWiretap {
  private:
-  USB usb;
-  HIDBoot<USB_HID_PROTOCOL_KEYBOARD> hid_keyboard;
-  BleKeyboard ble_keyboard;
-  Ticker ticker;
-  void (*keyboard_press_callback_ptr)();
+  USB usb_;
+  HIDBoot<USB_HID_PROTOCOL_KEYBOARD> hid_keyboard_;
+  BleKeyboard ble_keyboard_;
+  Ticker ticker_;
+  void (*keyboard_press_callback_ptr_)();
 
  public:
   KeyboardWiretap();
