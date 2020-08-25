@@ -4,7 +4,7 @@
 
 static const int TIMER_PERIOD = 100;
 
-void timer_callback();
+static void timer_callback();
 
 BackgroundProcess::BackgroundProcess()
 {

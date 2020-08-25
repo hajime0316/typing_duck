@@ -5,7 +5,7 @@ static const int TIMER_PERIOD = 20;
 
 KeyboardWiretap keyboard_wiretap;
 
-void timer_callback();
+static void timer_callback();
 void default_keyboard_press_callback();
 
 void KeyboardWiretap::OnKeyDown(uint8_t mod, uint8_t key)
