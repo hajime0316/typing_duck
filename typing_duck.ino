@@ -19,8 +19,4 @@ void loop()
 {
   // update button state
   M5.update();
-
-  if (M5.BtnA.wasPressed()) {
-    keyboard_press_callback();
-  }
 }
