@@ -9,10 +9,12 @@ void default_keyboard_press_callback();
 
 void KeyboardWiretap::OnKeyDown(uint8_t mod, uint8_t key)
 {
+  Serial.println("Key Down!");
 }
 
 void KeyboardWiretap::OnKeyUp(uint8_t mod, uint8_t key)
 {
+  Serial.println("Key up!");
 }
 
 KeyboardWiretap::KeyboardWiretap() : hid_keyboard_(&usb_)
