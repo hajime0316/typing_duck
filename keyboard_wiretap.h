@@ -1,3 +1,6 @@
+#ifndef KEYBOARD_WIRETAP_H_
+#define KEYBOARD_WIRETAP_H_
+
 #include <hidboot.h>     // USBおよびHIDBootを使うためにインクルード
 #include <BleKeyboard.h> // BleKeyboardを使うためにインクルード
 #include <Ticker.h>
@@ -15,3 +18,5 @@ class KeyboardWiretap {
   void begin();
   void set_keyboard_press_callback();
 };
+
+#endif // KEYBOARD_WIRETAP_H_
