@@ -1,9 +1,9 @@
 #include "keyboard_wiretap.h"
 
-void default_keyboard_press_callback()
-{
-  // デフォルトでは何もしない．
-}
+KeyboardWiretap keyboard_wiretap;
+
+void timer_callback();
+void default_keyboard_press_callback();
 
 KeyboardWiretap::KeyboardWiretap() : hid_keyboard_(&usb_)
 {
@@ -16,6 +16,7 @@ KeyboardWiretap::~KeyboardWiretap()
 
 void KeyboardWiretap::begin()
 {
+  ticker_.attach_ms(100, ::timer_callback);
 }
 
 void KeyboardWiretap::begin(void (*keyboard_press_callback_ptr)())
@@ -31,4 +32,14 @@ void KeyboardWiretap::set_keyboard_press_callback(void (*keyboard_press_callback
 
 void KeyboardWiretap::timer_callback()
 {
+}
+
+void timer_callback()
+{
+  keyboard_wiretap.timer_callback();
+}
+
+void default_keyboard_press_callback()
+{
+  // デフォルトでは何もしない．
 }
