@@ -1,3 +1,4 @@
+#include <M5Stack.h>
 #include "keyboard_wiretap.h"
 
 static const int TIMER_PERIOD = 20;
