@@ -26,18 +26,20 @@ void BackgroundProcess::begin()
 
 void BackgroundProcess::timer_callback()
 {
+  Serial.println("Timer Fire!");
 }
 
 void BackgroundProcess::keyboard_press_callback()
 {
+  Serial.println("Keyboard pressed!");
 }
 
 void global_timer_callback()
 {
-  Serial.println("Timer Fire!");
+  background_process.timer_callback();
 }
 
 void global_keyboard_press_callback()
 {
-  Serial.println("Keyboard pressed!");
+  background_process.keyboard_press_callback();
 }
