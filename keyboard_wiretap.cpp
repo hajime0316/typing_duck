@@ -25,6 +25,11 @@ KeyboardWiretap::~KeyboardWiretap()
 void KeyboardWiretap::begin()
 {
   ticker_.attach_ms(100, ::timer_callback);
+
+  if (usb_.Init() == -1)
+    Serial.println("OSC did not start.");
+
+  hid_keyboard_.SetReportParser(0, this);
 }
 
 void KeyboardWiretap::begin(void (*keyboard_press_callback_ptr)())
