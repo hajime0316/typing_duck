@@ -11,8 +11,6 @@ class BackgroundProcess {
   BackgroundProcess();
   ~BackgroundProcess();
   void begin();
-  void timer_callback();
-  void keyboard_press_callback();
 };
 
 #endif // BACKGROUND_PROCESS_HPP_
