@@ -1,4 +1,4 @@
-#include "background_process.hpp"
+#include "background_process.h"
 
 BackgroundProcess::BackgroundProcess()
 {
