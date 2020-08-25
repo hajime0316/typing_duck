@@ -2,6 +2,10 @@
 #include "background_process.h"
 #include "keyboard_wiretap.h"
 
+// ここでBackgroundProcessクラスをインスタンス化する
+// background_process.hをインクルードしたら，このインスタンスが使える
+BackgroundProcess background_process;
+
 static const int TIMER_PERIOD = 50;
 
 static void global_timer_callback();
@@ -20,6 +24,14 @@ void BackgroundProcess::begin()
   ticker_.attach_ms(TIMER_PERIOD, global_timer_callback);
 }
 
+void BackgroundProcess::timer_callback()
+{
+}
+
+void BackgroundProcess::keyboard_press_callback()
+{
+}
+
 void global_timer_callback()
 {
   Serial.println("Timer Fire!");
@@ -29,7 +41,3 @@ void global_keyboard_press_callback()
 {
   Serial.println("Keyboard pressed!");
 }
-
-// ここでBackgroundProcessクラスをインスタンス化する
-// background_process.hをインクルードしたら，このインスタンスが使える
-BackgroundProcess background_process;

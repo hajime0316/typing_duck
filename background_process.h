@@ -13,6 +13,8 @@ class BackgroundProcess {
   BackgroundProcess();
   ~BackgroundProcess();
   void begin();
+  void timer_callback();
+  void keyboard_press_callback();
 };
 
 // cppファイル内でBackgroundProcessクラスをインスタンス化する
