@@ -1,5 +1,7 @@
 #include "keyboard_wiretap.h"
 
+static const int TIMER_PERIOD = 20;
+
 KeyboardWiretap keyboard_wiretap;
 
 void timer_callback();
@@ -24,12 +26,12 @@ KeyboardWiretap::~KeyboardWiretap()
 
 void KeyboardWiretap::begin()
 {
-  ticker_.attach_ms(100, ::timer_callback);
-
   if (usb_.Init() == -1)
     Serial.println("OSC did not start.");
 
   hid_keyboard_.SetReportParser(0, this);
+
+  ticker_.attach_ms(TIMER_PERIOD, ::timer_callback);
 }
 
 void KeyboardWiretap::begin(void (*keyboard_press_callback_ptr)())
