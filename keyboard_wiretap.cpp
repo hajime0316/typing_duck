@@ -26,6 +26,15 @@ void KeyboardWiretap::OnKeyUp(uint8_t mod, uint8_t key)
 
 void KeyboardWiretap::OnControlKeysChanged(uint8_t before, uint8_t after)
 {
+  if (before < after) {
+    keyboard_press_callback_ptr_();
+  }
+
+  MODIFIERKEYS beforeMod;
+  *((uint8_t *)&beforeMod) = before;
+
+  MODIFIERKEYS afterMod;
+  *((uint8_t *)&afterMod) = after;
 }
 
 KeyboardWiretap::KeyboardWiretap() : hid_keyboard_(&usb_)
