@@ -6,7 +6,7 @@
 // background_process.hをインクルードしたら，このインスタンスが使える
 BackgroundProcess background_process;
 
-static const int TIMER_PERIOD = 50;
+static const int TIMER_PERIOD = 100;
 
 static void global_timer_callback()
 {
