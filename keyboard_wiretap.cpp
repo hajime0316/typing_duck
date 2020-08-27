@@ -18,6 +18,7 @@ static void default_keyboard_press_callback()
 void KeyboardWiretap::OnKeyDown(uint8_t mod, uint8_t key)
 {
   keyboard_press_callback_ptr_();
+  Serial.println(hid_usage_id_to_key_code(key));
 }
 
 void KeyboardWiretap::OnKeyUp(uint8_t mod, uint8_t key)
@@ -70,4 +71,12 @@ void KeyboardWiretap::set_keyboard_press_callback(void (*keyboard_press_callback
 void KeyboardWiretap::timer_callback()
 {
   usb_.Task();
+}
+
+char KeyboardWiretap::hid_usage_id_to_key_code(char hid_usage_id)
+{
+  if (4 <= hid_usage_id && hid_usage_id <= 29) {
+    return static_cast<char>(hid_usage_id - 4 + 'A');
+  }
+  return 0;
 }
