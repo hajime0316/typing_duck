@@ -5,6 +5,8 @@ static const int TIMER_PERIOD = 10;
 
 KeyboardWiretap keyboard_wiretap;
 
+static void (*keyboard_press_callback_ptr_)();
+
 static void global_timer_callback()
 {
   keyboard_wiretap.timer_callback();
@@ -49,8 +51,12 @@ KeyboardWiretap::~KeyboardWiretap()
 
 void KeyboardWiretap::begin()
 {
+  delay(200);
+
   if (usb_.Init() == -1)
     Serial.println("OSC did not start.");
+
+  delay(200);
 
   hid_keyboard_.SetReportParser(0, this);
 
