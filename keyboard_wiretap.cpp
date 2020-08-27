@@ -1,10 +1,9 @@
 #include <M5Stack.h>
 #include "keyboard_wiretap.h"
 
-static const int TIMER_PERIOD = 10;
-
 KeyboardWiretap keyboard_wiretap;
 
+static const int TIMER_PERIOD = 10;
 static void (*keyboard_press_callback_ptr_)();
 
 static void global_timer_callback()
@@ -21,10 +20,12 @@ void KeyboardWiretap::OnKeyDown(uint8_t mod, uint8_t key)
 {
   keyboard_press_callback_ptr_();
   Serial.println(hid_usage_id_to_key_code(key));
+  ble_keyboard_.press(hid_usage_id_to_key_code(key));
 }
 
 void KeyboardWiretap::OnKeyUp(uint8_t mod, uint8_t key)
 {
+  ble_keyboard_.release(hid_usage_id_to_key_code(key));
 }
 
 void KeyboardWiretap::OnControlKeysChanged(uint8_t before, uint8_t after)
@@ -56,11 +57,11 @@ void KeyboardWiretap::begin()
   if (usb_.Init() == -1)
     Serial.println("OSC did not start.");
 
-  delay(200);
-
   hid_keyboard_.SetReportParser(0, this);
 
   ble_keyboard_.begin();
+
+  delay(1000);
 
   ticker_.attach_ms(TIMER_PERIOD, global_timer_callback);
 }
