@@ -84,8 +84,15 @@ void KeyboardWiretap::timer_callback()
 
 char KeyboardWiretap::hid_usage_id_to_key_code(char hid_usage_id)
 {
-  if (4 <= hid_usage_id && hid_usage_id <= 29) {
-    return static_cast<char>(hid_usage_id - 4 + 'a');
+  if (4 <= hid_usage_id && hid_usage_id <= 29) { // アルファベット
+    return hid_usage_id - 4 + 'a';
   }
+  else if (30 <= hid_usage_id && hid_usage_id <= 38) {
+    return hid_usage_id - 30 + '1';
+  }
+  else if (hid_usage_id == 39) {
+    return 48;
+  }
+
   return 0;
 }
