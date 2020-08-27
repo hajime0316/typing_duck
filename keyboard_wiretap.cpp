@@ -54,6 +54,8 @@ void KeyboardWiretap::begin()
 
   hid_keyboard_.SetReportParser(0, this);
 
+  ble_keyboard_.begin();
+
   ticker_.attach_ms(TIMER_PERIOD, global_timer_callback);
 }
 
