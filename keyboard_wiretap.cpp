@@ -138,7 +138,7 @@ uint8_t KeyboardWiretap::hid_usage_id_to_key_code(uint8_t hid_usage_id)
   }
 
   // 矢印
-  if (79 <= hid_usage_id <= 82) {
+  if (79 <= hid_usage_id && hid_usage_id <= 82) {
     return hid_usage_id - 79 + KEY_RIGHT_ARROW;
   }
 
