@@ -39,6 +39,15 @@ void KeyboardWiretap::OnControlKeysChanged(uint8_t before, uint8_t after)
 
   MODIFIERKEYS afterMod;
   *((uint8_t *)&afterMod) = after;
+
+  for (size_t i = 0; i < 8; i++) {
+    if ((before >> i & 1) < (after >> i & 1)) {
+      ble_keyboard_.press(i + KEY_LEFT_CTRL);
+    }
+    else if ((before >> i & 1) > (after >> i & 1)) {
+      ble_keyboard_.release(i + KEY_LEFT_CTRL);
+    }
+  }
 }
 
 KeyboardWiretap::KeyboardWiretap() : hid_keyboard_(&usb_)
