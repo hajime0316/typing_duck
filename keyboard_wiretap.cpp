@@ -8,7 +8,12 @@ static const uint8_t HID_USAGE_ID_BACKSPACE = 42;
 static const uint8_t HID_USAGE_ID_DELETE = 76;
 static const uint8_t HID_USAGE_ID_TAB = 43;
 static const uint8_t HID_USAGE_ID_CAPS_LOCK = 57;
-// static uint8_t HID_USAGE_ID_ESC = ;
+static const uint8_t HID_USAGE_ID_ESC = 41;
+static const uint8_t HID_USAGE_ID_INSERT = 73;
+static const uint8_t HID_USAGE_ID_HONE = 74;
+static const uint8_t HID_USAGE_ID_PAGE_UP = 75;
+static const uint8_t HID_USAGE_ID_END = 77;
+static const uint8_t HID_USAGE_ID_PAGE_DOWN = 78;
 
 static const int TIMER_PERIOD = 10;
 static void (*keyboard_press_callback_ptr_)();
@@ -26,6 +31,7 @@ static void default_keyboard_press_callback()
 void KeyboardWiretap::OnKeyDown(uint8_t mod, uint8_t key)
 {
   keyboard_press_callback_ptr_();
+  Serial.println(key);
   ble_keyboard_.press(hid_usage_id_to_key_code(key));
 }
 
@@ -108,6 +114,24 @@ uint8_t KeyboardWiretap::hid_usage_id_to_key_code(uint8_t hid_usage_id)
       break;
     case HID_USAGE_ID_CAPS_LOCK:
       return KEY_CAPS_LOCK;
+      break;
+    case HID_USAGE_ID_ESC:
+      return KEY_ESC;
+      break;
+    case HID_USAGE_ID_INSERT:
+      return KEY_INSERT;
+      break;
+    case HID_USAGE_ID_HONE:
+      return KEY_HOME;
+      break;
+    case HID_USAGE_ID_PAGE_UP:
+      return KEY_PAGE_UP;
+      break;
+    case HID_USAGE_ID_END:
+      return KEY_END;
+      break;
+    case HID_USAGE_ID_PAGE_DOWN:
+      return KEY_PAGE_DOWN;
       break;
     default:
       break;
