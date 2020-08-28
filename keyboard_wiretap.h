@@ -11,11 +11,11 @@ class KeyboardWiretap : KeyboardReportParser {
   HIDBoot<USB_HID_PROTOCOL_KEYBOARD> hid_keyboard_;
   BleKeyboard ble_keyboard_;
   Ticker ticker_;
-  void (*keyboard_press_callback_ptr_)();
 
  protected:
   void OnKeyDown(uint8_t mod, uint8_t key);
   void OnKeyUp(uint8_t mod, uint8_t key);
+  void OnControlKeysChanged(uint8_t before, uint8_t after);
 
  public:
   KeyboardWiretap();
@@ -24,6 +24,7 @@ class KeyboardWiretap : KeyboardReportParser {
   void begin(void (*keyboard_press_callback_ptr)());
   void set_keyboard_press_callback(void (*keyboard_press_callback_ptr)());
   void timer_callback();
+  char hid_usage_id_to_key_code(char hid_usage_id);
 };
 
 extern KeyboardWiretap keyboard_wiretap;
