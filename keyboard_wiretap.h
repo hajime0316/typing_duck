@@ -24,7 +24,7 @@ class KeyboardWiretap : KeyboardReportParser {
   void begin(void (*keyboard_press_callback_ptr)());
   void set_keyboard_press_callback(void (*keyboard_press_callback_ptr)());
   void timer_callback();
-  char hid_usage_id_to_key_code(char hid_usage_id);
+  uint8_t hid_usage_id_to_key_code(uint8_t hid_usage_id);
 };
 
 extern KeyboardWiretap keyboard_wiretap;
