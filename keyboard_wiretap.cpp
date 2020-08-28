@@ -3,6 +3,13 @@
 
 KeyboardWiretap keyboard_wiretap;
 
+static const uint8_t HID_USAGE_ID_RETURN = 40;
+static const uint8_t HID_USAGE_ID_BACKSPACE = 42;
+static const uint8_t HID_USAGE_ID_DELETE = 76;
+static const uint8_t HID_USAGE_ID_TAB = 43;
+static const uint8_t HID_USAGE_ID_CAPS_LOCK = 57;
+// static uint8_t HID_USAGE_ID_ESC = ;
+
 static const int TIMER_PERIOD = 10;
 static void (*keyboard_press_callback_ptr_)();
 
@@ -87,6 +94,27 @@ void KeyboardWiretap::timer_callback()
 uint8_t KeyboardWiretap::hid_usage_id_to_key_code(uint8_t hid_usage_id)
 {
   uint8_t key_code = OemToAscii(0, hid_usage_id);
+  if (key_code != 0) return key_code;
 
-  return key_code;
+  switch (hid_usage_id) {
+    case HID_USAGE_ID_RETURN:
+      return KEY_RETURN;
+      break;
+    case HID_USAGE_ID_BACKSPACE:
+      return KEY_BACKSPACE;
+      break;
+    case HID_USAGE_ID_DELETE:
+      return KEY_DELETE;
+      break;
+    case HID_USAGE_ID_TAB:
+      return KEY_TAB;
+      break;
+    case HID_USAGE_ID_CAPS_LOCK:
+      return KEY_CAPS_LOCK;
+      break;
+    default:
+      break;
+  }
+
+  return 0;
 }
