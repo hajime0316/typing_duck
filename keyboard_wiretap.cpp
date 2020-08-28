@@ -34,12 +34,6 @@ void KeyboardWiretap::OnControlKeysChanged(uint8_t before, uint8_t after)
     keyboard_press_callback_ptr_();
   }
 
-  MODIFIERKEYS beforeMod;
-  *((uint8_t *)&beforeMod) = before;
-
-  MODIFIERKEYS afterMod;
-  *((uint8_t *)&afterMod) = after;
-
   for (size_t i = 0; i < 8; i++) {
     if ((before >> i & 1) < (after >> i & 1)) {
       ble_keyboard_.press(i + KEY_LEFT_CTRL);
