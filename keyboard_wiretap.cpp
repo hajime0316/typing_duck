@@ -137,6 +137,11 @@ uint8_t KeyboardWiretap::hid_usage_id_to_key_code(uint8_t hid_usage_id)
       break;
   }
 
+  // 矢印
+  if (79 <= hid_usage_id <= 82) {
+    return hid_usage_id - 79 + KEY_RIGHT_ARROW;
+  }
+
   uint8_t key_code = OemToAscii(0, hid_usage_id);
   if (key_code != 0) return key_code;
 
