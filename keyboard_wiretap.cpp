@@ -31,7 +31,7 @@ static void default_keyboard_press_callback()
 void KeyboardWiretap::OnKeyDown(uint8_t mod, uint8_t key)
 {
   keyboard_press_callback_ptr_();
-  Serial.println(key);
+  // Serial.println(key);
   ble_keyboard_.press(hid_usage_id_to_key_code(key));
 }
 
