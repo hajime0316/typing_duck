@@ -93,9 +93,6 @@ void KeyboardWiretap::timer_callback()
 
 uint8_t KeyboardWiretap::hid_usage_id_to_key_code(uint8_t hid_usage_id)
 {
-  uint8_t key_code = OemToAscii(0, hid_usage_id);
-  if (key_code != 0) return key_code;
-
   switch (hid_usage_id) {
     case HID_USAGE_ID_RETURN:
       return KEY_RETURN;
@@ -115,6 +112,9 @@ uint8_t KeyboardWiretap::hid_usage_id_to_key_code(uint8_t hid_usage_id)
     default:
       break;
   }
+
+  uint8_t key_code = OemToAscii(0, hid_usage_id);
+  if (key_code != 0) return key_code;
 
   return 0;
 }
