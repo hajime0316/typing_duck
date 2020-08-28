@@ -19,12 +19,12 @@ static void default_keyboard_press_callback()
 void KeyboardWiretap::OnKeyDown(uint8_t mod, uint8_t key)
 {
   keyboard_press_callback_ptr_();
-  ble_keyboard_.press(OemToAscii(0, key));
+  ble_keyboard_.press(hid_usage_id_to_key_code(key));
 }
 
 void KeyboardWiretap::OnKeyUp(uint8_t mod, uint8_t key)
 {
-  ble_keyboard_.release(OemToAscii(0, key));
+  ble_keyboard_.release(hid_usage_id_to_key_code(key));
 }
 
 void KeyboardWiretap::OnControlKeysChanged(uint8_t before, uint8_t after)
