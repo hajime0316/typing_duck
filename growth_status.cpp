@@ -1,4 +1,5 @@
 #include "growth_status.h"
+#include "background_process.h"
 
 // GrowthStatusクラスをインスタンス化
 GrowthStatus growth_status;
