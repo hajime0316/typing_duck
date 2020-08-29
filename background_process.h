@@ -6,6 +6,7 @@
 class BackgroundProcess {
  private:
   Ticker ticker_;
+  time_t present_time; // 電源を入れてから現在までの時刻[100ms]
 
  public:
   BackgroundProcess();

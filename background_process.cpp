@@ -20,6 +20,7 @@ static void global_keyboard_press_callback()
 
 BackgroundProcess::BackgroundProcess()
 {
+  present_time = 0;
 }
 
 BackgroundProcess::~BackgroundProcess()
@@ -34,6 +35,8 @@ void BackgroundProcess::begin()
 
 void BackgroundProcess::timer_callback()
 {
+  present_time++;
+
   Serial.println("Timer Fire!");
 }
 
