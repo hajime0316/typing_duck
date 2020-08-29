@@ -25,9 +25,6 @@ BackgroundProcess::BackgroundProcess()
 
   // ステータスの初期化
   typing_status = TypingStatus::WAITING;
-  level_status = 0;
-  evolution_status = 0;
-  generation_status = 0;
 
   // 内部変数の初期化
   exp = 0;

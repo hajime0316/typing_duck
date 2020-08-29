@@ -17,9 +17,6 @@ class BackgroundProcess {
 
   // ステータス
   TypingStatus typing_status; // 待機中やタイピング中などの状態がある
-  int level_status;           // レベルを表す
-  int evolution_status;       // 進化の段階を表す．ダックは0で進化するごとに1増える
-  int generation_status;      // 世代を表す
 
   // 内部変数
   int exp;          // 経験値
@@ -36,7 +33,7 @@ class BackgroundProcess {
   void timer_callback();
   void keyboard_press_callback();
   // 経験値関係
-  int get_exp() const {return exp};
+  int get_exp() const { return exp; };
   void reset_exp() { exp = 0; };
 };
 
