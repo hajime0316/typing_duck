@@ -21,6 +21,10 @@ class BackgroundProcess {
   int evolution_status;       // 進化の段階を表す．ダックは0で進化するごとに1増える
   int generation_status;      // 世代を表す
 
+  // 内部変数
+  int exp;          // 経験値
+  int working_flag; //作業中フラグ．作業が続いている場合はtrue
+
  public:
   BackgroundProcess();
   ~BackgroundProcess();
