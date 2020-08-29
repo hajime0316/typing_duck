@@ -15,4 +15,8 @@ class GrowthStatus {
   void begin();
 };
 
+// GrowthStatusクラスをインスタンス化
+// ヘッダーファイルをインクルードすると，このインスタンスが使える
+extern GrowthStatus growth_status;
+
 #endif // GROWTH_STATUS_H_
