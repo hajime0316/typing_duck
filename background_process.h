@@ -35,6 +35,9 @@ class BackgroundProcess {
   void begin();
   void timer_callback();
   void keyboard_press_callback();
+  // 経験値関係
+  int get_exp() const {return exp};
+  void reset_exp() { exp = 0; };
 };
 
 // cppファイル内でBackgroundProcessクラスをインスタンス化する
