@@ -2,9 +2,6 @@
 #define BACKGROUND_PROCESS_H_
 
 #include <Ticker.h>
-#include <vector>
-
-const size_t TYPE_TIME_ARRAY_SIZE = 5;
 
 enum class TypingStatus {
   WAITING,        // 待機中
@@ -25,9 +22,12 @@ class BackgroundProcess {
   int generation_status;      // 世代を表す
 
   // 内部変数
-  int exp;             // 経験値
-  int working_flag;    //作業中フラグ．作業が続いている場合はtrue
-  time_t type_time[TYPE_TIME_ARRAY_SIZE]; // キーボードを入力した時刻を記録．前から順に新しい
+  int exp;          // 経験値
+  int working_flag; //作業中フラグ．作業が続いている場合はtrue
+
+  int shift_typing[5]; //キーボード入力を行った時刻を記録．
+
+  int working_time; //作業時間の合計を記録
 
  public:
   BackgroundProcess();
