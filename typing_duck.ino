@@ -19,4 +19,11 @@ void loop()
 {
   // update button state
   M5.update();
+
+  // NOTE: BackgroundProcessにおいて，M5Stackのボタンが押されたときに，
+  // キーボードのキーが押されたのと同じ動作をするようにするための命令．
+  // 実験のために入れている．後で必ず削除する．
+  if (M5.BtnA.wasPressed()) {
+    background_process.keyboard_press_callback();
+  }
 }
