@@ -31,6 +31,10 @@ BackgroundProcess::BackgroundProcess()
   // 内部変数の初期化
   exp = 0;
   working_flag = false;
+  for (size_t i = 0; i < TYPE_TIME_ARRAY_SIZE; i++)
+  {
+    type_time[i] = -1;
+  }
 }
 
 BackgroundProcess::~BackgroundProcess()
