@@ -20,6 +20,14 @@ class CharacterStatus {
   int get_evolution_status() const { return evolution_status; };
   int get_generation_status() const { return generation_status; };
   TypingStatus get_typing_status() const { return typing_status; };
+  // ステータスの変化を通知する関数
+  bool was_changed_to_first_evolution();
+  bool was_changed_to_second_evolution();
+  bool was_changed_to_third_evolution();
+  bool was_changed_to_waiting();
+  bool was_changed_to_typing();
+  bool was_changed_to_prompting_rest();
+  bool was_changed_to_rejecting_input();
 };
 
 // CharacterStatusクラスをインスタンス化
