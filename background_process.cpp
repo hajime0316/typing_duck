@@ -64,7 +64,8 @@ void BackgroundProcess::timer_callback()
   if (typing_status == TypingStatus::WAITING) {
     waiting_state_time++;
   }
-  else if (waiting_state_time > TIME_THRESHOLD_WAITING_STATE) {
+
+  if (waiting_state_time > TIME_THRESHOLD_WAITING_STATE) {
     working_flag = false;
   }
 
@@ -74,7 +75,7 @@ void BackgroundProcess::timer_callback()
   }
 
   // ここから表示関連
-
+  Serial.println("---------------");
   // 現在時刻を表示
   Serial.print("Present time: ");
   Serial.println(present_time);
@@ -87,9 +88,13 @@ void BackgroundProcess::timer_callback()
   Serial.print("Exp. is ");
   Serial.println(exp);
 
-  //作業中フラグを表示
+  // 作業中フラグを表示
   Serial.print("Working flag is ");
   Serial.println(working_flag);
+
+  // TypingStatusがWAITINGになった時間を表示
+  Serial.print("Waiting time is ");
+  Serial.println(waiting_state_time);
 
   // ステータスをSerial port へ表示する部分（デバッグ用）
   switch (typing_status) {
@@ -136,6 +141,7 @@ void BackgroundProcess::keyboard_press_callback()
   if (i == 4) {
     typing_status = TypingStatus::TYPING;
     working_flag = true;
+    waiting_state_time = 0;
   }
 
   //キーボードボタンが押されたことを示す
