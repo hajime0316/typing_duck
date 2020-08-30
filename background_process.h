@@ -2,6 +2,7 @@
 #define BACKGROUND_PROCESS_H_
 
 #include <Ticker.h>
+#include <time.h>
 
 enum class TypingStatus {
   WAITING,        // 待機中
