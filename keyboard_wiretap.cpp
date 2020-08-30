@@ -59,6 +59,7 @@ void KeyboardWiretap::OnControlKeysChanged(uint8_t before, uint8_t after)
 KeyboardWiretap::KeyboardWiretap() : hid_keyboard_(&usb_)
 {
   keyboard_press_callback_ptr_ = default_keyboard_press_callback;
+  stop_sending_key_signal = false;
 }
 
 KeyboardWiretap::~KeyboardWiretap()
