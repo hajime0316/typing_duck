@@ -24,6 +24,7 @@ void CharacterStatus::begin()
 
 void CharacterStatus::update()
 {
+  // 経験値に関するステータスの更新
   int exp = background_process.get_exp();
 
   level_status = static_cast<int>(exp * EXP_WEIGHT) % 100 + 1;
@@ -37,4 +38,7 @@ void CharacterStatus::update()
     evolution_status = 2;
   }
   generation_status = static_cast<int>(exp * EXP_WEIGHT) / 100 + 1;
+
+  // タイピングステータスの更新
+  typing_status = background_process.get_typing_status();
 }
