@@ -12,7 +12,6 @@ static const int TIMER_PERIOD = 100;
 static const int RESTING_TIME = 30;
 static const int THRESHOLD_WORKING_STATE_TIME = 150;
 
-
 static void global_timer_callback()
 {
   background_process.timer_callback();
@@ -106,7 +105,7 @@ void BackgroundProcess::timer_callback()
   }
 
   // 作業時間が十分長くなると休憩を促す
-  if(working_time > THRESHOLD_WORKING_STATE_TIME){
+  if (working_time > THRESHOLD_WORKING_STATE_TIME) {
     typing_status = TypingStatus::PROMPTING_REST;
     working_flag = false;
   }
@@ -127,7 +126,7 @@ void BackgroundProcess::timer_callback()
 
   // 作業中フラグを表示
   Serial.print("Working flag is ");
-  Serial.println(working_flag);       
+  Serial.println(working_flag);
 
   // TypingStatusがWAITINGになった時間を表示
   Serial.print("Waiting time is ");
@@ -166,19 +165,22 @@ void BackgroundProcess::keyboard_press_callback()
     exp++;
   }
 
-  // １秒以内の間隔で５入力あれば，TypingStatusをTYPINGに変更し，作業中フラグをTUREに
-  int i = 0;
+  // 待機中において１秒以内の間隔で５入力あれば，TypingStatusをTYPINGに変更し，
+  // 作業中フラグをTRUEに
+  if (typing_status == TypingStatus::WAITING) {
+    int i = 0;
 
-  for (i = 0; i < 4; i++) {
-    if (shift_typing[i + 1] - shift_typing[i] > 10) {
-      break;
+    for (i = 0; i < 4; i++) {
+      if (shift_typing[i + 1] - shift_typing[i] > 10) {
+        break;
+      }
     }
-  }
 
-  if (i == 4) {
-    typing_status = TypingStatus::TYPING;
-    working_flag = true;
-    waiting_time = 0;
+    if (i == 4) {
+      typing_status = TypingStatus::TYPING;
+      working_flag = true;
+      waiting_time = 0;
+    }
   }
 
   // 休憩の促しに関する部分
@@ -202,7 +204,7 @@ void BackgroundProcess::do_waiting()
   waiting_time++;
 
   if (waiting_time > RESTING_TIME) {
-        working_flag = false;
+    working_flag = false;
   }
 }
 
