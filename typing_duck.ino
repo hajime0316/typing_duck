@@ -19,6 +19,7 @@ void loop()
 {
   // update button state
   M5.update();
+  character_status.update();
 
   // NOTE: BackgroundProcessにおいて，M5Stackのボタンが押されたときに，
   // キーボードのキーが押されたのと同じ動作をするようにするための命令．
