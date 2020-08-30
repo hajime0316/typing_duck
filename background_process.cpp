@@ -101,11 +101,13 @@ void BackgroundProcess::timer_callback()
   if (working_flag == true) {
     working_time++;
   }
+  else {
+    working_time = 0;
+  }
 
   // 作業時間が十分長くなると休憩を促す
   if(working_time > THRESHOLD_WORKING_STATE_TIME){
     typing_status = TypingStatus::PROMPTING_REST;
-    working_time = 0;
     working_flag = false;
   }
 
