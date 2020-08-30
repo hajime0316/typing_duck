@@ -59,6 +59,44 @@ void BackgroundProcess::timer_callback()
   // 現在時刻に更新
   present_time++;
 
+  static TypingStatus following_typing_status = TypingStatus::REJECTING_INPUT;
+  switch (typing_status) {
+    case TypingStatus::WAITING:
+      if (typing_status != following_typing_status) {
+        init_waiting();
+        following_typing_status = typing_status;
+      }
+      do_waiting();
+      break;
+
+    case TypingStatus::TYPING:
+      if (typing_status != following_typing_status) {
+        init_typing();
+        following_typing_status = typing_status;
+      }
+      do_typing();
+      break;
+
+    case TypingStatus::PROMPTING_REST:
+      if (typing_status != following_typing_status) {
+        init_prompting_rest();
+        following_typing_status = typing_status;
+      }
+      do_prompting_rest();
+      break;
+
+    case TypingStatus::REJECTING_INPUT:
+      if (typing_status != following_typing_status) {
+        init_rejecting_input();
+        following_typing_status = typing_status;
+      }
+      do_rejecting_input();
+      break;
+
+    default:
+      break;
+  }
+
   // 一定時間（5秒間）キーボード入力がないとステータスをWAITINGに変更する
   if (present_time - shift_typing[0] > 50) {
     typing_status = TypingStatus::WAITING;
@@ -93,14 +131,13 @@ void BackgroundProcess::timer_callback()
     typing_status = TypingStatus::REJECTING_INPUT;
   }
 
-
   // 入力を拒否している時間をカウント
   if (typing_status == TypingStatus::REJECTING_INPUT) {
     rejecting_input_time++;
   }
-  
+
   // 休憩時間分時間が経過すると，TypingStatusをWAITINGに変更
-  if(rejecting_input_time > RESTING_TIME){
+  if (rejecting_input_time > RESTING_TIME) {
     typing_status = TypingStatus::WAITING;
     rejecting_input_time = 0;
   }

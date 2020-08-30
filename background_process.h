@@ -44,6 +44,16 @@ class BackgroundProcess {
   int get_exp() const { return exp; };
   // 経験値関係
   void reset_exp() { exp = 0; };
+
+ protected:
+  void init_waiting();
+  void do_waiting();
+  void init_typing();
+  void do_typing();
+  void init_prompting_rest();
+  void do_prompting_rest();
+  void init_rejecting_input();
+  void do_rejecting_input();
 };
 
 // cppファイル内でBackgroundProcessクラスをインスタンス化する
