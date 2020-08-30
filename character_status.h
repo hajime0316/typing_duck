@@ -10,6 +10,9 @@ class CharacterStatus {
   int generation_status;      // 世代を表す
   TypingStatus typing_status; // 待機中やタイピング中などの状態を保持する
 
+  int last_evolution_status;
+  TypingStatus last_typing_status;
+
  public:
   CharacterStatus();
   ~CharacterStatus();

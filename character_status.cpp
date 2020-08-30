@@ -11,6 +11,9 @@ CharacterStatus::CharacterStatus()
   evolution_status = 0;
   generation_status = 0;
   typing_status = TypingStatus::WAITING;
+
+  last_evolution_status = 0;
+  last_typing_status = TypingStatus::WAITING;
 }
 
 CharacterStatus::~CharacterStatus()
