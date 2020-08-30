@@ -10,15 +10,17 @@ void setup()
   // M5Stackをバッテリ―駆動する場合に必要
   M5.Power.begin();
 
-  // バックグラウンド処理を初期化
+  // キャラクターステータスを初期化
+  // バックグラウンド処理がスタートする
   // M5.begin()の後に書く
   character_status.begin();
 }
 
 void loop()
 {
-  // update button state
+  // M5Stackのボタンの状態を参照する場合は，ループの最初でupdate()を呼び出す必要がある
   M5.update();
+  // character_statusを参照する場合は，ループの最初でupdate()を呼び出す必要がある
   character_status.update();
 
   // NOTE: BackgroundProcessにおいて，M5Stackのボタンが押されたときに，
