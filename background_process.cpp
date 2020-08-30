@@ -9,6 +9,8 @@ BackgroundProcess background_process;
 
 static const int TIMER_PERIOD = 100;
 
+static const int TIME_THRESHOLD_WAITING_STATE = 30;
+
 static void global_timer_callback()
 {
   background_process.timer_callback();
@@ -34,6 +36,8 @@ BackgroundProcess::BackgroundProcess()
   for (int i = 0; i < 5; i++) {
     shift_typing[i] = 0;
   }
+
+  waiting_state_time = 0;
 }
 
 BackgroundProcess::~BackgroundProcess()
@@ -56,6 +60,14 @@ void BackgroundProcess::timer_callback()
     typing_status = TypingStatus::WAITING;
   }
 
+  // TypingStatusがWAITINGの状態が＜10秒＞続いたら，作業中フラグを折る(デバッグのために＜3分＞を＜10秒＞に変更)
+  if (typing_status == TypingStatus::WAITING) {
+    waiting_state_time++;
+  }
+  else if (waiting_state_time > TIME_THRESHOLD_WAITING_STATE) {
+    working_flag = false;
+  }
+
   // 作業時間をカウントする部分
   if (working_flag == true) {
     working_time++;
@@ -68,12 +80,16 @@ void BackgroundProcess::timer_callback()
   Serial.println(present_time);
 
   // 作業時間を表示
-  Serial.print("Working time is");
+  Serial.print("Working time is ");
   Serial.println(working_time);
 
   // 経験値を表示
-  Serial.print("Exp. is");
+  Serial.print("Exp. is ");
   Serial.println(exp);
+
+  //作業中フラグを表示
+  Serial.print("Working flag is ");
+  Serial.println(working_flag);
 
   // ステータスをSerial port へ表示する部分（デバッグ用）
   switch (typing_status) {
@@ -101,12 +117,14 @@ void BackgroundProcess::timer_callback()
 void BackgroundProcess::keyboard_press_callback()
 {
   shift_typing[0] = present_time;
-  std::sort(shift_typing, shift_typing + 5); //時刻が早い順に順に並び替え
+  std::sort(shift_typing, shift_typing + 5); // 時刻が早い順に順に並び替え
 
+  // TypingStatusがTYPINGであれば経験値を積算
   if (typing_status == TypingStatus::TYPING) {
     exp++;
   }
 
+  // １秒以内の間隔で５入力あれば，TypingStatusをTYPINGに変更し，作業中フラグをTUREに
   int i = 0;
 
   for (i = 0; i < 4; i++) {
@@ -114,10 +132,12 @@ void BackgroundProcess::keyboard_press_callback()
       break;
     }
   }
+
   if (i == 4) {
     typing_status = TypingStatus::TYPING;
     working_flag = true;
   }
 
+  //キーボードボタンが押されたことを示す
   Serial.println("Keyboard pressed!");
 }

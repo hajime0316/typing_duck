@@ -23,9 +23,11 @@ class BackgroundProcess {
   int exp;          // 経験値
   int working_flag; //作業中フラグ．作業が続いている場合はtrue
 
-  int shift_typing[5]; //キーボード入力を行った時刻を記録．
+  int shift_typing[5]; // キーボード入力を行った時刻を記録．
 
-  int working_time; //作業時間の合計を記録
+  int working_time; // 作業時間の合計を記録
+
+  int waiting_state_time; // 待機中の時間をカウント
 
  public:
   BackgroundProcess();
