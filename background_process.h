@@ -2,6 +2,7 @@
 #define BACKGROUND_PROCESS_H_
 
 #include <Ticker.h>
+#include <time.h>
 
 enum class TypingStatus {
   WAITING,        // 待機中
@@ -22,9 +23,16 @@ class BackgroundProcess {
   int exp;          // 経験値
   int working_flag; //作業中フラグ．作業が続いている場合はtrue
 
-  int shift_typing[5]; //キーボード入力を行った時刻を記録．
+  int shift_typing[5]; // キーボード入力を行った時刻を記録．
 
-  int working_time; //作業時間の合計を記録
+  int working_time; // 作業時間の合計を記録
+
+  int waiting_time; // 待機中の時間をカウント
+
+  int prompting_rest_state_time; // 休憩を促している時間をカウント
+  int prompting_rest_type_num;   // 休憩を促している時のタイプ数をカウント
+
+  int rejecting_input_time; //入力を拒否している時間をカウント
 
  public:
   BackgroundProcess();
@@ -32,9 +40,21 @@ class BackgroundProcess {
   void begin();
   void timer_callback();
   void keyboard_press_callback();
-  // 経験値関係
+  // ゲッター
+  TypingStatus get_typing_status() const { return typing_status; };
   int get_exp() const { return exp; };
+  // 経験値関係
   void reset_exp() { exp = 0; };
+
+ protected:
+  void init_waiting();
+  void do_waiting();
+  void init_typing();
+  void do_typing();
+  void init_prompting_rest();
+  void do_prompting_rest();
+  void init_rejecting_input();
+  void do_rejecting_input();
 };
 
 // cppファイル内でBackgroundProcessクラスをインスタンス化する
