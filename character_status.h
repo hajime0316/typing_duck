@@ -3,20 +3,20 @@
 
 #include <Ticker.h>
 
-class GrowthStatus {
+class CharacterStatus {
  private:
   int level_status;      // レベルを表す
   int evolution_status;  // 進化の段階を表す．ダックは0で進化するごとに1増える
   int generation_status; // 世代を表す
 
  public:
-  GrowthStatus();
-  ~GrowthStatus();
+  CharacterStatus();
+  ~CharacterStatus();
   void begin();
 };
 
-// GrowthStatusクラスをインスタンス化
+// CharacterStatusクラスをインスタンス化
 // ヘッダーファイルをインクルードすると，このインスタンスが使える
-extern GrowthStatus growth_status;
+extern CharacterStatus growth_status;
 
 #endif // GROWTH_STATUS_H_

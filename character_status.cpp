@@ -1,20 +1,20 @@
 #include "character_status.h"
 #include "background_process.h"
 
-// GrowthStatusクラスをインスタンス化
-GrowthStatus growth_status;
+// CharacterStatusクラスをインスタンス化
+CharacterStatus growth_status;
 
-GrowthStatus::GrowthStatus()
+CharacterStatus::CharacterStatus()
 {
   level_status = 0;
   evolution_status = 0;
   generation_status = 0;
 }
 
-GrowthStatus::~GrowthStatus()
+CharacterStatus::~CharacterStatus()
 {
 }
 
-void GrowthStatus::begin()
+void CharacterStatus::begin()
 {
 }
