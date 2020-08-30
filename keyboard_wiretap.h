@@ -11,7 +11,7 @@ class KeyboardWiretap : KeyboardReportParser {
   HIDBoot<USB_HID_PROTOCOL_KEYBOARD> hid_keyboard_;
   BleKeyboard ble_keyboard_;
   Ticker ticker_;
-  bool stop_sending_key_signal;
+  bool stop_sending_key_signal_flag;
 
  protected:
   void OnKeyDown(uint8_t mod, uint8_t key);
