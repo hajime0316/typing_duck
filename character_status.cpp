@@ -17,7 +17,7 @@ CharacterStatus::~CharacterStatus()
 {
 }
 
-void CharacterStatus::begin()
+void CharacterStatus::start_background_process()
 {
   background_process.begin();
 }

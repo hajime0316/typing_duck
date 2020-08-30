@@ -13,7 +13,7 @@ class CharacterStatus {
  public:
   CharacterStatus();
   ~CharacterStatus();
-  void begin();
+  void start_background_process();
   void update();
   // getter
   int get_level_status() const { return level_status; };

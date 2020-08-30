@@ -10,10 +10,10 @@ void setup()
   // M5Stackをバッテリ―駆動する場合に必要
   M5.Power.begin();
 
-  // キャラクターステータスを初期化
-  // バックグラウンド処理がスタートする
-  // M5.begin()の後に書く
-  character_status.begin();
+  // バックグラウンド処理をスタートする
+  // character_statusを使う場合，この関数を最初に一回だけ呼び出す必要がある
+  // M5.begin()の後に書く必要がある
+  character_status.start_background_process();
 }
 
 void loop()
