@@ -26,7 +26,7 @@ class CharacterStatus {
   // ステータスの変化を通知する関数
   bool was_changed_to_first_evolution();
   bool was_changed_to_second_evolution();
-  bool was_changed_to_third_evolution();
+  bool was_changed_to_origin_evolution();
   bool was_changed_to_waiting();
   bool was_changed_to_typing();
   bool was_changed_to_prompting_rest();

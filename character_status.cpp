@@ -68,7 +68,7 @@ bool CharacterStatus::was_changed_to_second_evolution()
   return false;
 }
 
-bool CharacterStatus::was_changed_to_third_evolution()
+bool CharacterStatus::was_changed_to_origin_evolution()
 {
   if (last_evolution_status == 2 && evolution_status == 0) {
     last_evolution_status = evolution_status;
