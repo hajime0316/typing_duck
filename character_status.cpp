@@ -79,16 +79,40 @@ bool CharacterStatus::was_changed_to_origin_evolution()
 
 bool CharacterStatus::was_changed_to_waiting()
 {
+  if (last_typing_status != typing_status &&
+      typing_status == TypingStatus::WAITING) {
+    last_typing_status = typing_status;
+    return true;
+  }
+  return false;
 }
 
 bool CharacterStatus::was_changed_to_typing()
 {
+  if (last_typing_status != typing_status &&
+      typing_status == TypingStatus::TYPING) {
+    last_typing_status = typing_status;
+    return true;
+  }
+  return false;
 }
 
 bool CharacterStatus::was_changed_to_prompting_rest()
 {
+  if (last_typing_status != typing_status &&
+      typing_status == TypingStatus::PROMPTING_REST) {
+    last_typing_status = typing_status;
+    return true;
+  }
+  return false;
 }
 
 bool CharacterStatus::was_changed_to_rejecting_input()
 {
+  if (last_typing_status != typing_status &&
+      typing_status == TypingStatus::REJECTING_INPUT) {
+    last_typing_status = typing_status;
+    return true;
+  }
+  return false;
 }
