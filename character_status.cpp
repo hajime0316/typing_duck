@@ -1,5 +1,4 @@
 #include "character_status.h"
-#include "background_process.h"
 
 // CharacterStatusクラスをインスタンス化
 CharacterStatus character_status;

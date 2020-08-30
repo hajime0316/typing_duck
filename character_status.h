@@ -1,6 +1,8 @@
 #ifndef GROWTH_STATUS_H_
 #define GROWTH_STATUS_H_
 
+#include "background_process.h"
+
 class CharacterStatus {
  private:
   int level_status;      // レベルを表す
