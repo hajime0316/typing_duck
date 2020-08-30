@@ -42,3 +42,31 @@ void CharacterStatus::update()
   // タイピングステータスの更新
   typing_status = background_process.get_typing_status();
 }
+
+bool CharacterStatus::was_changed_to_first_evolution()
+{
+}
+
+bool CharacterStatus::was_changed_to_second_evolution()
+{
+}
+
+bool CharacterStatus::was_changed_to_third_evolution()
+{
+}
+
+bool CharacterStatus::was_changed_to_waiting()
+{
+}
+
+bool CharacterStatus::was_changed_to_typing()
+{
+}
+
+bool CharacterStatus::was_changed_to_prompting_rest()
+{
+}
+
+bool CharacterStatus::was_changed_to_rejecting_input()
+{
+}
