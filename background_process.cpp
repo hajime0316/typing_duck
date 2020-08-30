@@ -9,7 +9,9 @@ BackgroundProcess background_process;
 
 static const int TIMER_PERIOD = 100;
 
-static const int TIME_THRESHOLD_WAITING_STATE = 30;
+static const int RESTING_TIME = 30;
+static const int THRESHOLD_WORKING_STATE_TIME = 100;
+static const int THRESHOLD_PROMPTING_REST_STATE_TIME = 100;
 
 static void global_timer_callback()
 {
@@ -38,6 +40,8 @@ BackgroundProcess::BackgroundProcess()
   }
 
   waiting_state_time = 0;
+  prompting_rest_state_time = 0;
+  rejecting_input_time = 0;
 }
 
 BackgroundProcess::~BackgroundProcess()
@@ -60,18 +64,44 @@ void BackgroundProcess::timer_callback()
     typing_status = TypingStatus::WAITING;
   }
 
-  // TypingStatusがWAITINGの状態が＜10秒＞続いたら，作業中フラグを折る(デバッグのために＜3分＞を＜10秒＞に変更)
+  // TypingStatusがWAITINGの状態が一定時間続いたら，作業中フラグを折り，作業時間をリセット
   if (typing_status == TypingStatus::WAITING) {
     waiting_state_time++;
   }
 
-  if (waiting_state_time > TIME_THRESHOLD_WAITING_STATE) {
+  if (waiting_state_time > RESTING_TIME) {
     working_flag = false;
+    working_time = 0;
   }
 
   // 作業時間をカウントする部分
   if (working_flag == true) {
     working_time++;
+  }
+
+  // 作業時間が一定時間以上になると休憩を促す
+  if (working_time > THRESHOLD_WORKING_STATE_TIME) {
+    typing_status = TypingStatus::PROMPTING_REST;
+  }
+
+  if (typing_status == TypingStatus::PROMPTING_REST) {
+    prompting_rest_state_time++;
+  }
+
+  // 休憩を促しても入力が続くようならば，TypingStatusをREJECTING_INPUTに変更
+  if (prompting_rest_state_time > THRESHOLD_PROMPTING_REST_STATE_TIME) {
+    typing_status = TypingStatus::REJECTING_INPUT;
+  }
+
+
+  // 入力を拒否している時間をカウント
+  if (typing_status == TypingStatus::REJECTING_INPUT) {
+    rejecting_input_time++;
+  }
+  
+  // 休憩時間分時間が経過すると，TypingStatusをWAITINGに変更
+  if(rejecting_input_time > RESTING_TIME){
+    typing_status = TypingStatus::WAITING;
   }
 
   // ここから表示関連

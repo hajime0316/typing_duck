@@ -29,6 +29,10 @@ class BackgroundProcess {
 
   int waiting_state_time; // 待機中の時間をカウント
 
+  int prompting_rest_state_time; // 休憩を促している時間をカウント
+
+  int rejecting_input_time; //入力を拒否している時間をカウント
+
  public:
   BackgroundProcess();
   ~BackgroundProcess();
