@@ -260,8 +260,14 @@ void BackgroundProcess::do_prompting_rest()
 
 void BackgroundProcess::init_rejecting_input()
 {
+  rejecting_input_time = 0;
 }
 
 void BackgroundProcess::do_rejecting_input()
 {
+  rejecting_input_time++;
+  if (rejecting_input_time > RESTING_TIME)
+  {
+    typing_status = TypingStatus::WAITING;
+  }
 }
