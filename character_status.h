@@ -16,6 +16,6 @@ class CharacterStatus {
 
 // CharacterStatusクラスをインスタンス化
 // ヘッダーファイルをインクルードすると，このインスタンスが使える
-extern CharacterStatus growth_status;
+extern CharacterStatus character_status;
 
 #endif // GROWTH_STATUS_H_

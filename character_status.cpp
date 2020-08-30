@@ -2,7 +2,7 @@
 #include "background_process.h"
 
 // CharacterStatusクラスをインスタンス化
-CharacterStatus growth_status;
+CharacterStatus character_status;
 
 CharacterStatus::CharacterStatus()
 {
