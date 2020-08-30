@@ -52,14 +52,29 @@ void CharacterStatus::update()
 
 bool CharacterStatus::was_changed_to_first_evolution()
 {
+  if (last_evolution_status == 0 && evolution_status == 1) {
+    last_evolution_status = evolution_status;
+    return true;
+  }
+  return false;
 }
 
 bool CharacterStatus::was_changed_to_second_evolution()
 {
+  if (last_evolution_status == 1 && evolution_status == 2) {
+    last_evolution_status = evolution_status;
+    return true;
+  }
+  return false;
 }
 
 bool CharacterStatus::was_changed_to_third_evolution()
 {
+  if (last_evolution_status == 2 && evolution_status == 0) {
+    last_evolution_status = evolution_status;
+    return true;
+  }
+  return false;
 }
 
 bool CharacterStatus::was_changed_to_waiting()
