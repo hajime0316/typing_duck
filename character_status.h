@@ -1,8 +1,6 @@
 #ifndef GROWTH_STATUS_H_
 #define GROWTH_STATUS_H_
 
-#include <Ticker.h>
-
 class CharacterStatus {
  private:
   int level_status;      // レベルを表す
@@ -13,6 +11,7 @@ class CharacterStatus {
   CharacterStatus();
   ~CharacterStatus();
   void begin();
+  void update();
 };
 
 // CharacterStatusクラスをインスタンス化
