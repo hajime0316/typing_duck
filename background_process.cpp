@@ -39,7 +39,7 @@ BackgroundProcess::BackgroundProcess()
     shift_typing[i] = 0;
   }
 
-  waiting_state_time = 0;
+  waiting_time = 0;
   prompting_rest_state_time = 0;
   rejecting_input_time = 0;
 }
@@ -66,10 +66,10 @@ void BackgroundProcess::timer_callback()
 
   // TypingStatusがWAITINGの状態が一定時間続いたら，作業中フラグを折り，作業時間をリセット
   if (typing_status == TypingStatus::WAITING) {
-    waiting_state_time++;
+    waiting_time++;
   }
 
-  if (waiting_state_time > RESTING_TIME) {
+  if (waiting_time > RESTING_TIME) {
     working_flag = false;
     working_time = 0;
   }
@@ -125,7 +125,7 @@ void BackgroundProcess::timer_callback()
 
   // TypingStatusがWAITINGになった時間を表示
   Serial.print("Waiting time is ");
-  Serial.println(waiting_state_time);
+  Serial.println(waiting_time);
 
   // ステータスをSerial port へ表示する部分（デバッグ用）
   switch (typing_status) {
@@ -172,7 +172,7 @@ void BackgroundProcess::keyboard_press_callback()
   if (i == 4) {
     typing_status = TypingStatus::TYPING;
     working_flag = true;
-    waiting_state_time = 0;
+    waiting_time = 0;
   }
 
   //キーボードボタンが押されたことを示す
