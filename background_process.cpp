@@ -215,3 +215,35 @@ void BackgroundProcess::keyboard_press_callback()
   //キーボードボタンが押されたことを示す
   Serial.println("Keyboard pressed!");
 }
+
+void BackgroundProcess::init_waiting()
+{
+}
+
+void BackgroundProcess::do_waiting()
+{
+}
+
+void BackgroundProcess::init_typing()
+{
+}
+
+void BackgroundProcess::do_typing()
+{
+}
+
+void BackgroundProcess::init_prompting_rest()
+{
+}
+
+void BackgroundProcess::do_prompting_rest()
+{
+}
+
+void BackgroundProcess::init_rejecting_input()
+{
+}
+
+void BackgroundProcess::do_rejecting_input()
+{
+}
