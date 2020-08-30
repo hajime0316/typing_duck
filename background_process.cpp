@@ -188,7 +188,7 @@ void BackgroundProcess::keyboard_press_callback()
   }
 
   //キーボードボタンが押されたことを示す
-  Serial.println("Keyboard pressed!");
+  // Serial.println("Keyboard pressed!");
 }
 
 // 関数部分
@@ -232,7 +232,7 @@ void BackgroundProcess::do_prompting_rest()
     typing_status = TypingStatus::REJECTING_INPUT;
   }
 
-  if (prompting_rest_state_time < RESTING_TIME) {
+  if (prompting_rest_state_time > RESTING_TIME) {
     typing_status = TypingStatus::WAITING;
   }
 }
