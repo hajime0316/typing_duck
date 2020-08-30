@@ -14,6 +14,10 @@ class CharacterStatus {
   ~CharacterStatus();
   void begin();
   void update();
+  // getter
+  int get_level_status() const {return level_status;};
+  int get_evolution_status() const {return evolution_status;};
+  int get_generation_status() const {return generation_status;};
 };
 
 // CharacterStatusクラスをインスタンス化
