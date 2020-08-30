@@ -97,50 +97,12 @@ void BackgroundProcess::timer_callback()
       break;
   }
 
-  // 一定時間（5秒間）キーボード入力がないとステータスをWAITINGに変更する
-  if (present_time - shift_typing[0] > 50) {
-    typing_status = TypingStatus::WAITING;
-  }
-
-  // TypingStatusがWAITINGの状態が一定時間続いたら，作業中フラグを折り，作業時間をリセット
-  if (typing_status == TypingStatus::WAITING) {
-    waiting_time++;
-  }
-
-  if (waiting_time > RESTING_TIME) {
-    working_flag = false;
-    working_time = 0;
-  }
-
   // 作業時間をカウントする部分
   if (working_flag == true) {
     working_time++;
   }
 
-  // 作業時間が一定時間以上になると休憩を促す
-  if (working_time > THRESHOLD_WORKING_STATE_TIME) {
-    typing_status = TypingStatus::PROMPTING_REST;
-  }
-
-  if (typing_status == TypingStatus::PROMPTING_REST) {
-    prompting_rest_state_time++;
-  }
-
-  // 休憩を促しても入力が続くようならば，TypingStatusをREJECTING_INPUTに変更
-  if (prompting_rest_state_time > THRESHOLD_PROMPTING_REST_STATE_TIME) {
-    typing_status = TypingStatus::REJECTING_INPUT;
-  }
-
-  // 入力を拒否している時間をカウント
-  if (typing_status == TypingStatus::REJECTING_INPUT) {
-    rejecting_input_time++;
-  }
-
-  // 休憩時間分時間が経過すると，TypingStatusをWAITINGに変更
-  if (rejecting_input_time > RESTING_TIME) {
-    typing_status = TypingStatus::WAITING;
-    rejecting_input_time = 0;
-  }
+ 
 
   // ここから表示関連
   Serial.println("---------------");
@@ -216,6 +178,7 @@ void BackgroundProcess::keyboard_press_callback()
   Serial.println("Keyboard pressed!");
 }
 
+// 関数部分
 void BackgroundProcess::init_waiting()
 {
   waiting_time = 0;
@@ -223,6 +186,12 @@ void BackgroundProcess::init_waiting()
 
 void BackgroundProcess::do_waiting()
 {
+  waiting_time++;
+
+  if (waiting_time > RESTING_TIME) {
+    working_time = 0;
+    working_flag = false;
+  }
 }
 
 void BackgroundProcess::init_typing()
@@ -231,6 +200,12 @@ void BackgroundProcess::init_typing()
 
 void BackgroundProcess::do_typing()
 {
+  exp++;
+  working_flag = true;
+
+  if (present_time - shift_typing[0] > 50) {
+    typing_status = TypingStatus::WAITING;
+  }
 }
 
 void BackgroundProcess::init_prompting_rest()
