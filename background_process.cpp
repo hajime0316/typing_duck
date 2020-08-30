@@ -102,8 +102,6 @@ void BackgroundProcess::timer_callback()
     working_time++;
   }
 
- 
-
   // ここから表示関連
   Serial.println("---------------");
   // 現在時刻を表示
@@ -200,7 +198,6 @@ void BackgroundProcess::init_typing()
 
 void BackgroundProcess::do_typing()
 {
-  exp++;
   working_flag = true;
 
   if (present_time - shift_typing[0] > 50) {
