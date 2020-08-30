@@ -27,6 +27,10 @@ void CharacterStatus::start_background_process()
 
 void CharacterStatus::update()
 {
+  // 1つ前のステータスの更新
+  last_evolution_status = evolution_status;
+  last_typing_status = typing_status;
+
   // 経験値に関するステータスの更新
   int exp = background_process.get_exp();
 
