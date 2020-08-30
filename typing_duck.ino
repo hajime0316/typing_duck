@@ -13,7 +13,7 @@ void setup()
 
   // バックグラウンド処理を初期化
   // M5.begin()の後に書く
-  background_process.begin();
+  character_status.begin();
 }
 
 void loop()

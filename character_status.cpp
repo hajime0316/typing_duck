@@ -17,6 +17,7 @@ CharacterStatus::~CharacterStatus()
 
 void CharacterStatus::begin()
 {
+  background_process.begin();
 }
 
 void CharacterStatus::update()
