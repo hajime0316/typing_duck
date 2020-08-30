@@ -27,7 +27,7 @@ class BackgroundProcess {
 
   int working_time; // 作業時間の合計を記録
 
-  int waiting_state_time; // 待機中の時間をカウント
+  int waiting_time; // 待機中の時間をカウント
 
   int prompting_rest_state_time; // 休憩を促している時間をカウント
 
