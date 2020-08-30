@@ -234,10 +234,20 @@ void BackgroundProcess::do_typing()
 
 void BackgroundProcess::init_prompting_rest()
 {
+  prompting_rest_state_time = 0;
+  prompting_rest_type_num = 0;
 }
 
 void BackgroundProcess::do_prompting_rest()
 {
+  prompting_rest_state_time++;
+  if (prompting_rest_type_num > 5) {
+    typing_status = TypingStatus::REJECTING_INPUT;
+  }
+
+  if (prompting_rest_state_time < RESTING_TIME) {
+    typing_status = TypingStatus::WAITING;
+  }
 }
 
 void BackgroundProcess::init_rejecting_input()
