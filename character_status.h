@@ -5,9 +5,10 @@
 
 class CharacterStatus {
  private:
-  int level_status;      // レベルを表す
-  int evolution_status;  // 進化の段階を表す．ダックは0で進化するごとに1増える
-  int generation_status; // 世代を表す
+  int level_status;           // レベルを表す
+  int evolution_status;       // 進化の段階を表す．ダックは0で進化するごとに1増える
+  int generation_status;      // 世代を表す
+  TypingStatus typing_status; // 待機中やタイピング中などの状態を保持する
 
  public:
   CharacterStatus();
@@ -15,9 +16,9 @@ class CharacterStatus {
   void begin();
   void update();
   // getter
-  int get_level_status() const {return level_status;};
-  int get_evolution_status() const {return evolution_status;};
-  int get_generation_status() const {return generation_status;};
+  int get_level_status() const { return level_status; };
+  int get_evolution_status() const { return evolution_status; };
+  int get_generation_status() const { return generation_status; };
 };
 
 // CharacterStatusクラスをインスタンス化
