@@ -33,8 +33,10 @@ class BackgroundProcess {
   void begin();
   void timer_callback();
   void keyboard_press_callback();
-  // 経験値関係
+  // ゲッター
+  TypingStatus get_typing_status() const { return typing_status; };
   int get_exp() const { return exp; };
+  // 経験値関係
   void reset_exp() { exp = 0; };
 };
 
