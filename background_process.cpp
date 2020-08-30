@@ -48,6 +48,7 @@ void BackgroundProcess::begin()
 
 void BackgroundProcess::timer_callback()
 {
+  //現在時刻に更新
   present_time++;
 
   //一定時間（5秒間）キーボード入力がないとステータスをWAITINGに変更し作業中フラグをおる
@@ -66,6 +67,9 @@ void BackgroundProcess::timer_callback()
 
   //作業時間を表示
   Serial.println(working_time);
+
+  //経験値を表示
+  Serial.println(exp);
 
   //ステータスをSerial port へ表示する部分（デバッグ用）
   switch (typing_status) {
@@ -92,10 +96,12 @@ void BackgroundProcess::timer_callback()
 
 void BackgroundProcess::keyboard_press_callback()
 {
-  Serial.println("Keyboard pressed!");
-
   shift_typing[0] = present_time;
   std::sort(shift_typing, shift_typing + 5); //時刻が早い順に順に並び替え
+
+  if( typing_status == TypingStatus::TYPING ){
+    exp++;
+  }
 
   int i = 0;
 
@@ -108,4 +114,6 @@ void BackgroundProcess::keyboard_press_callback()
     typing_status = TypingStatus::TYPING;
     working_flag = true;
   }
+
+  Serial.println("Keyboard pressed!");
 }
