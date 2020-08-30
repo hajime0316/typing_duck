@@ -48,30 +48,34 @@ void BackgroundProcess::begin()
 
 void BackgroundProcess::timer_callback()
 {
-  //現在時刻に更新
+  // 現在時刻に更新
   present_time++;
 
-  //一定時間（5秒間）キーボード入力がないとステータスをWAITINGに変更し作業中フラグをおる
+  // 一定時間（5秒間）キーボード入力がないとステータスをWAITINGに変更する
   if (present_time - shift_typing[0] > 50) {
     typing_status = TypingStatus::WAITING;
-    working_flag = false;
   }
 
-  //作業時間をカウントする部分
+  // 作業時間をカウントする部分
   if (working_flag == true) {
     working_time++;
   }
 
-  //ここから表示関連
-  Serial.println("Timer Fire!");
+  // ここから表示関連
 
-  //作業時間を表示
+  // 現在時刻を表示
+  Serial.print("Present time: ");
+  Serial.println(present_time);
+
+  // 作業時間を表示
+  Serial.print("Working time is");
   Serial.println(working_time);
 
-  //経験値を表示
+  // 経験値を表示
+  Serial.print("Exp. is");
   Serial.println(exp);
 
-  //ステータスをSerial port へ表示する部分（デバッグ用）
+  // ステータスをSerial port へ表示する部分（デバッグ用）
   switch (typing_status) {
     case TypingStatus::WAITING:
       Serial.println("Status is WAITING");
@@ -93,13 +97,13 @@ void BackgroundProcess::timer_callback()
       break;
   }
 }
-
+// ここからkeyboard_press_callback関数
 void BackgroundProcess::keyboard_press_callback()
 {
   shift_typing[0] = present_time;
   std::sort(shift_typing, shift_typing + 5); //時刻が早い順に順に並び替え
 
-  if( typing_status == TypingStatus::TYPING ){
+  if (typing_status == TypingStatus::TYPING) {
     exp++;
   }
 
