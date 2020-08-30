@@ -106,6 +106,7 @@ void BackgroundProcess::timer_callback()
   if(working_time > THRESHOLD_WORKING_STATE_TIME){
     typing_status = TypingStatus::PROMPTING_REST;
     working_time = 0;
+    working_flag = false;
   }
 
   // ここから表示関連
