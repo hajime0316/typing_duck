@@ -10,8 +10,8 @@ BackgroundProcess background_process;
 static const int TIMER_PERIOD = 100;
 
 static const int RESTING_TIME = 30;
-static const int THRESHOLD_WORKING_STATE_TIME = 100;
-static const int THRESHOLD_PROMPTING_REST_STATE_TIME = 100;
+static const int THRESHOLD_WORKING_STATE_TIME = 150;
+
 
 static void global_timer_callback()
 {
@@ -102,6 +102,11 @@ void BackgroundProcess::timer_callback()
     working_time++;
   }
 
+  // 作業時間が十分長くなると休憩を促す
+  if(working_time > THRESHOLD_WORKING_STATE_TIME){
+    typing_status = TypingStatus::PROMPTING_REST;
+  }
+
   // ここから表示関連
   Serial.println("---------------");
   // 現在時刻を表示
@@ -118,7 +123,7 @@ void BackgroundProcess::timer_callback()
 
   // 作業中フラグを表示
   Serial.print("Working flag is ");
-  Serial.println(working_flag);
+  Serial.println(working_flag);       
 
   // TypingStatusがWAITINGになった時間を表示
   Serial.print("Waiting time is ");
