@@ -19,6 +19,7 @@ class CharacterStatus {
   int get_level_status() const { return level_status; };
   int get_evolution_status() const { return evolution_status; };
   int get_generation_status() const { return generation_status; };
+  TypingStatus get_typing_status() const { return typing_status; };
 };
 
 // CharacterStatusクラスをインスタンス化
