@@ -1,5 +1,6 @@
 #include <M5Stack.h>
 #include "background_process.h"
+#include "character_status.h"
 
 void setup()
 {

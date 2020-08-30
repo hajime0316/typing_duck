@@ -1,4 +1,4 @@
-#include "growth_status.h"
+#include "character_status.h"
 #include "background_process.h"
 
 // GrowthStatusクラスをインスタンス化
