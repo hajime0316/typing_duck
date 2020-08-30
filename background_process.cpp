@@ -102,6 +102,7 @@ void BackgroundProcess::timer_callback()
   // 休憩時間分時間が経過すると，TypingStatusをWAITINGに変更
   if(rejecting_input_time > RESTING_TIME){
     typing_status = TypingStatus::WAITING;
+    rejecting_input_time = 0;
   }
 
   // ここから表示関連
