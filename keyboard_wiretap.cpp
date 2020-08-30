@@ -40,12 +40,14 @@ void KeyboardWiretap::OnKeyDown(uint8_t mod, uint8_t key)
 void KeyboardWiretap::OnKeyUp(uint8_t mod, uint8_t key)
 {
   if (stop_sending_key_signal_flag) return;
+
   ble_keyboard_.release(hid_usage_id_to_key_code(key));
 }
 
 void KeyboardWiretap::OnControlKeysChanged(uint8_t before, uint8_t after)
 {
   if (stop_sending_key_signal_flag) return;
+
   if (before < after) {
     keyboard_press_callback_ptr_();
   }
