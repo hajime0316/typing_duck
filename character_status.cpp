@@ -18,3 +18,7 @@ CharacterStatus::~CharacterStatus()
 void CharacterStatus::begin()
 {
 }
+
+void CharacterStatus::update()
+{
+}
