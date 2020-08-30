@@ -154,3 +154,13 @@ uint8_t KeyboardWiretap::hid_usage_id_to_key_code(uint8_t hid_usage_id)
 
   return 0;
 }
+
+void KeyboardWiretap::stop_sending_key_signal()
+{
+  stop_sending_key_signal_flag = true;
+}
+
+void KeyboardWiretap::start_sending_key_signal()
+{
+  stop_sending_key_signal_flag = false;
+}
