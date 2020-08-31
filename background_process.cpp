@@ -11,6 +11,7 @@ static const int TIMER_PERIOD = 100;
 
 static const int RESTING_TIME = 30;
 static const int THRESHOLD_WORKING_STATE_TIME = 150;
+static const int MAX_PROMPTING_REST_TYPING_NUM = 10;
 
 static void global_timer_callback()
 {
@@ -237,7 +238,7 @@ void BackgroundProcess::init_prompting_rest()
 void BackgroundProcess::do_prompting_rest()
 {
   prompting_rest_state_time++;
-  if (prompting_rest_typing_num > 5) {
+  if (prompting_rest_typing_num > MAX_PROMPTING_REST_TYPING_NUM) {
     typing_status = TypingStatus::REJECTING_INPUT;
   }
 
