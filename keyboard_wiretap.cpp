@@ -157,6 +157,7 @@ uint8_t KeyboardWiretap::hid_usage_id_to_key_code(uint8_t hid_usage_id)
 
 void KeyboardWiretap::stop_sending_key_signal()
 {
+  ble_keyboard_.releaseAll();
   stop_sending_key_signal_flag = true;
 }
 
