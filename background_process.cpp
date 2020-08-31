@@ -196,6 +196,7 @@ void BackgroundProcess::keyboard_press_callback()
 void BackgroundProcess::init_waiting()
 {
   waiting_time = 0;
+  keyboard_wiretap.start_sending_key_signal();
 }
 
 void BackgroundProcess::do_waiting()
@@ -241,6 +242,7 @@ void BackgroundProcess::do_prompting_rest()
 void BackgroundProcess::init_rejecting_input()
 {
   rejecting_input_time = 0;
+  keyboard_wiretap.stop_sending_key_signal();
 }
 
 void BackgroundProcess::do_rejecting_input()
