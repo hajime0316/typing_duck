@@ -22,11 +22,4 @@ void loop()
   M5.update();
   // character_statusを参照する場合は，ループの最初でupdate()を呼び出す必要がある
   character_status.update();
-
-  // NOTE: BackgroundProcessにおいて，M5Stackのボタンが押されたときに，
-  // キーボードのキーが押されたのと同じ動作をするようにするための命令．
-  // 実験のために入れている．後で必ず削除する．
-  if (M5.BtnA.wasPressed()) {
-    background_process.keyboard_press_callback();
-  }
 }
