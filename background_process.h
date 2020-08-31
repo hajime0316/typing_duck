@@ -4,6 +4,8 @@
 #include <Ticker.h>
 #include <time.h>
 
+const int SHIFT_TYPING_SIZE = 5;
+
 enum class TypingStatus {
   WAITING,        // 待機中
   TYPING,         // タイピング中
@@ -23,7 +25,7 @@ class BackgroundProcess {
   int exp;          // 経験値
   int working_flag; //作業中フラグ．作業が続いている場合はtrue
 
-  int shift_typing[5]; // キーボード入力を行った時刻を記録．
+  int shift_typing[SHIFT_TYPING_SIZE]; // キーボード入力を行った時刻を記録．
 
   int working_time; // 作業時間の合計を記録
 

@@ -35,7 +35,7 @@ BackgroundProcess::BackgroundProcess()
   working_flag = false;
   working_time = 0;
 
-  for (int i = 0; i < 5; i++) {
+  for (int i = 0; i < SHIFT_TYPING_SIZE; i++) {
     shift_typing[i] = 0;
   }
 
@@ -159,7 +159,7 @@ void BackgroundProcess::timer_callback()
 void BackgroundProcess::keyboard_press_callback()
 {
   shift_typing[0] = present_time;
-  std::sort(shift_typing, shift_typing + 5); // 時刻が早い順に順に並び替え
+  std::sort(shift_typing, shift_typing + SHIFT_TYPING_SIZE); // 時刻が早い順に順に並び替え
 
   // TypingStatusがTYPINGであれば経験値を積算
   if (typing_status == TypingStatus::TYPING) {
@@ -171,7 +171,7 @@ void BackgroundProcess::keyboard_press_callback()
   if (typing_status == TypingStatus::WAITING) {
     int i = 0;
 
-    for (i = 0; i < 4; i++) {
+    for (i = 0; i < SHIFT_TYPING_SIZE - 1; i++) {
       if (shift_typing[i + 1] - shift_typing[i] > 10) {
         break;
       }
@@ -224,7 +224,7 @@ void BackgroundProcess::do_typing()
 {
   working_flag = true;
 
-  if (present_time - shift_typing[0] > 50) {
+  if (present_time - shift_typing[SHIFT_TYPING_SIZE - 1] > 50) {
     typing_status = TypingStatus::WAITING;
   }
 }
