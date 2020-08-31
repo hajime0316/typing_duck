@@ -5,7 +5,7 @@ void setup()
 {
   // M5Stackを初期化
   // LCDとSerialのみ有効化
-  M5.begin(true, false, true, false);
+  M5.begin(true, true, true, false);
 
   // M5Stackをバッテリ―駆動する場合に必要
   M5.Power.begin();
