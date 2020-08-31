@@ -185,7 +185,7 @@ void BackgroundProcess::keyboard_press_callback()
 
   // 休憩の促しに関する部分
   if (typing_status == TypingStatus::PROMPTING_REST) {
-    prompting_rest_type_num++;
+    prompting_rest_typing_num++;
     // 休憩の促し中にキー入力があると時間をリセット
     prompting_rest_state_time = 0;
   }
@@ -231,13 +231,13 @@ void BackgroundProcess::do_typing()
 void BackgroundProcess::init_prompting_rest()
 {
   prompting_rest_state_time = 0;
-  prompting_rest_type_num = 0;
+  prompting_rest_typing_num = 0;
 }
 
 void BackgroundProcess::do_prompting_rest()
 {
   prompting_rest_state_time++;
-  if (prompting_rest_type_num > 5) {
+  if (prompting_rest_typing_num > 5) {
     typing_status = TypingStatus::REJECTING_INPUT;
   }
 
