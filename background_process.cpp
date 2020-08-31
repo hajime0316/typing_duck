@@ -186,6 +186,13 @@ void BackgroundProcess::keyboard_press_callback()
   // 休憩の促しに関する部分
   if (typing_status == TypingStatus::PROMPTING_REST) {
     prompting_rest_type_num++;
+    // 休憩の促し中にキー入力があると時間をリセット
+    prompting_rest_state_time = 0;
+  }
+  // 入力拒否に関する部分
+  if (typing_status == TypingStatus::REJECTING_INPUT) {
+    // 入力拒否中にキー入力があると時間をリセット
+    rejecting_input_time = 0;
   }
 
   //キーボードボタンが押されたことを示す
