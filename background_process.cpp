@@ -218,6 +218,7 @@ void BackgroundProcess::do_waiting()
 
 void BackgroundProcess::init_typing()
 {
+  exp += SHIFT_TYPING_SIZE; // タイピング中になる前に入力されたタイプ数をexpに追加
 }
 
 void BackgroundProcess::do_typing()
