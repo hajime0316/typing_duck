@@ -1,5 +1,5 @@
 #include <M5Stack.h>
-#include "background_process.h"
+#include "character_status.h"
 
 void setup()
 {
@@ -10,13 +10,16 @@ void setup()
   // M5Stackをバッテリ―駆動する場合に必要
   M5.Power.begin();
 
-  // バックグラウンド処理を初期化
-  // M5.begin()の後に書く
-  background_process.begin();
+  // バックグラウンド処理をスタートする
+  // character_statusを使う場合，この関数を最初に一回だけ呼び出す必要がある
+  // M5.begin()の後に書く必要がある
+  character_status.start_background_process();
 }
 
 void loop()
 {
-  // update button state
+  // M5Stackのボタンの状態を参照する場合は，ループの最初でupdate()を呼び出す必要がある
   M5.update();
+  // character_statusを参照する場合は，ループの最初でupdate()を呼び出す必要がある
+  character_status.update();
 }
