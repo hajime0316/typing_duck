@@ -30,10 +30,10 @@ static void default_keyboard_press_callback()
 
 void KeyboardWiretap::OnKeyDown(uint8_t mod, uint8_t key)
 {
+  keyboard_press_callback_ptr_();
+
   if (stop_sending_key_signal_flag) return;
 
-  keyboard_press_callback_ptr_();
-  // Serial.println(key);
   ble_keyboard_.press(hid_usage_id_to_key_code(key));
 }
 
@@ -46,11 +46,11 @@ void KeyboardWiretap::OnKeyUp(uint8_t mod, uint8_t key)
 
 void KeyboardWiretap::OnControlKeysChanged(uint8_t before, uint8_t after)
 {
-  if (stop_sending_key_signal_flag) return;
-
   if (before < after) {
     keyboard_press_callback_ptr_();
   }
+
+  if (stop_sending_key_signal_flag) return;
 
   for (size_t i = 0; i < 8; i++) {
     if ((before >> i & 1) < (after >> i & 1)) {
