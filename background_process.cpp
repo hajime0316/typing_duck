@@ -196,8 +196,8 @@ void BackgroundProcess::keyboard_press_callback()
     rejecting_input_time = 0;
   }
 
-  //キーボードボタンが押されたことを示す
-  // Serial.println("Keyboard pressed!");
+  // キーボードボタンが押されたことを示す
+  Serial.println("Keyboard pressed!");
 }
 
 // 関数部分
