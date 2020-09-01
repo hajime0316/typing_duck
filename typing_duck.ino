@@ -23,5 +23,6 @@ void loop()
   M5.update();
   // character_statusを参照する場合は，ループの最初でupdate()を呼び出す必要がある
   character_status.update();
+  // キーボードのハンドリングのために，ループの最初でtask()を呼び出す必要がある
   keyboard_wiretap.task();
 }
