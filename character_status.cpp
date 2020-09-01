@@ -3,7 +3,7 @@
 // CharacterStatusクラスをインスタンス化
 CharacterStatus character_status;
 
-static const double EXP_WEIGHT = 1.0 / 50.0;
+static const double EXP_WEIGHT = 1.0 / 5.0;
 
 CharacterStatus::CharacterStatus()
 {
