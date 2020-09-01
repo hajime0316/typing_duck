@@ -82,10 +82,6 @@ void KeyboardWiretap::begin()
   hid_keyboard_.SetReportParser(0, this);
 
   ble_keyboard_.begin();
-
-  delay(1000);
-
-  ticker_.attach_ms(TIMER_PERIOD, global_timer_callback);
 }
 
 void KeyboardWiretap::begin(void (*keyboard_press_callback_ptr)())
