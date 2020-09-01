@@ -20,7 +20,7 @@ static void (*keyboard_press_callback_ptr_)();
 
 static void global_timer_callback()
 {
-  keyboard_wiretap.timer_callback();
+  keyboard_wiretap.task();
 }
 
 static void default_keyboard_press_callback()
@@ -82,10 +82,6 @@ void KeyboardWiretap::begin()
   hid_keyboard_.SetReportParser(0, this);
 
   ble_keyboard_.begin();
-
-  delay(1000);
-
-  ticker_.attach_ms(TIMER_PERIOD, global_timer_callback);
 }
 
 void KeyboardWiretap::begin(void (*keyboard_press_callback_ptr)())
@@ -99,7 +95,7 @@ void KeyboardWiretap::set_keyboard_press_callback(void (*keyboard_press_callback
   keyboard_press_callback_ptr_ = keyboard_press_callback_ptr;
 }
 
-void KeyboardWiretap::timer_callback()
+void KeyboardWiretap::task()
 {
   usb_.Task();
 }
