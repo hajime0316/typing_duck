@@ -1,12 +1,9 @@
 #include <M5Stack.h>
 #include "character_status.h"
 #include"keyboard_wiretap.h"
-#include<Ticker.h>
 #include<string>
 
 static const int LOOP_TIME_MAX =100;
-
-Ticker ticker;
 
 //画像の表示位置(画像サイズ:280*210)
 uint16_t jpg_x = 20;
@@ -48,6 +45,7 @@ void present_status() {//ステータスを画面下部に表示する
   M5.Lcd.print(" ");
   M5.Lcd.print("Gen.");//世代
   M5.Lcd.print(character_status.get_generation_status());
+  M5.Lcd.print("    ");
 }
 
 void draw_character() 
@@ -94,7 +92,6 @@ void setup()
   // character_statusを使う場合，この関数を最初に一回だけ呼び出す必要がある
   // M5.begin()の後に書く必要がある
   character_status.start_background_process();
-  //ticker.attach_ms(1000, draw_character); //draw_character関数を１秒毎に呼び出す
 }
 
 void loop()
@@ -107,6 +104,7 @@ void loop()
   
   if(character_status.was_changed_to_first_evolution() == true) {//第１進化の時のコース選択
     character_num = random(11, 14);
+    
     if (character_num == 11) {
       character_name = "Husen";
     }
@@ -119,15 +117,20 @@ void loop()
   } else if(character_status.was_changed_to_second_evolution() == true) {//第２進化の時のcharacter_num変数の更新
     if(character_num == 11){
       character_num = 21;
+      character_name = "Maeba";
     } else if(character_num == 12) {
       character_num = 22;
+      character_name = "Ushika";
     } else if(character_num == 13) {
       character_num = 23;
+      character_name = "Blue";
     }
   } else if(character_status.was_changed_to_origin_evolution() == true) {//世代交代の時のcharacter_num変数の更新
     character_num = 0;
+    M5.Lcd.clear();
   }
 
+  //画像表示
   static int loop_time = 0;
   loop_time++;
   
