@@ -23,5 +23,5 @@ void loop()
   M5.update();
   // character_statusを参照する場合は，ループの最初でupdate()を呼び出す必要がある
   character_status.update();
-  keyboard_wiretap.timer_callback();
+  keyboard_wiretap.task();
 }

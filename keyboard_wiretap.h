@@ -22,7 +22,7 @@ class KeyboardWiretap : KeyboardReportParser {
   void begin();
   void begin(void (*keyboard_press_callback_ptr)());
   void set_keyboard_press_callback(void (*keyboard_press_callback_ptr)());
-  void timer_callback();
+  void task();
   uint8_t hid_usage_id_to_key_code(uint8_t hid_usage_id);
   void stop_sending_key_signal();
   void start_sending_key_signal();

@@ -20,7 +20,7 @@ static void (*keyboard_press_callback_ptr_)();
 
 static void global_timer_callback()
 {
-  keyboard_wiretap.timer_callback();
+  keyboard_wiretap.task();
 }
 
 static void default_keyboard_press_callback()
@@ -95,7 +95,7 @@ void KeyboardWiretap::set_keyboard_press_callback(void (*keyboard_press_callback
   keyboard_press_callback_ptr_ = keyboard_press_callback_ptr;
 }
 
-void KeyboardWiretap::timer_callback()
+void KeyboardWiretap::task()
 {
   usb_.Task();
 }
