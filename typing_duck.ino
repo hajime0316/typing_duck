@@ -3,7 +3,7 @@
 #include"keyboard_wiretap.h"
 #include<string>
 
-static const int LOOP_TIME_MAX =100;
+static const int LOOP_TIME_MAX = 100;
 
 //画像の表示位置(画像サイズ:280*210)
 uint16_t jpg_x = 20;
@@ -127,6 +127,7 @@ void loop()
     }
   } else if(character_status.was_changed_to_origin_evolution() == true) {//世代交代の時のcharacter_num変数の更新
     character_num = 0;
+    character_name = "Duck";
     M5.Lcd.clear();
   }
 
