@@ -9,8 +9,8 @@ BackgroundProcess background_process;
 
 static const int TIMER_PERIOD = 100;
 
-static const int RESTING_TIME = 30;
-static const int THRESHOLD_WORKING_STATE_TIME = 150;
+static const int RESTING_TIME = 50;
+static const int THRESHOLD_WORKING_STATE_TIME = 100;
 static const int MAX_PROMPTING_REST_TYPING_NUM = 10;
 
 static void global_timer_callback()
